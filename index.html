@@ -50,7 +50,7 @@
                 inset 4px 0 10px rgba(0,0,0,0.1),
                 inset -1px 0 2px rgba(255,255,255,0.5),
                 10px 15px 30px rgba(0,0,0,0.4);
-            padding: 30px;
+            padding: 20px;
             font-family: 'Lora', serif;
             color: #332d29;
             transform-origin: left center;
@@ -119,22 +119,28 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 15px;
             margin-top: 10px;
         }
 
         .frame {
             background-color: #d7c4a5; 
-            border: 6px solid #5d4037; 
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            border: 4px solid #5d4037; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             display: flex; justify-content: center; align-items: center;
-            padding: 3px; transition: 0.3s;
+            padding: 2px; transition: 0.3s;
             overflow: hidden;
             border-radius: 2px;
             cursor: zoom-in;
+            width: 100%;
         }
         
-        .frame:hover { transform: scale(1.03); z-index: 10; }
+        @media (min-width: 768px) {
+            .frame { border-width: 6px; padding: 3px; }
+            .gallery-grid { gap: 20px; }
+        }
+
+        .frame:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
 
         .frame-inner {
             width: 100%; height: 100%;
@@ -143,7 +149,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100px;
         }
 
         .frame-inner img {
@@ -153,13 +158,18 @@
             display: block;
         }
 
-        .landscape { aspect-ratio: 16/10; }
-        .portrait { aspect-ratio: 10/16; }
+        .landscape { aspect-ratio: 1.4; }
+        .portrait { aspect-ratio: 0.7; }
 
         .gallery-caption {
             font-family: 'Playfair Display', serif; font-size: 0.75rem;
-            font-weight: bold; text-align: center; margin-top: 4px; color: #3e2723;
-            line-height: 1.1;
+            font-weight: bold; text-align: center; margin-top: 6px; color: #3e2723;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+        }
+        
+        @media (min-width: 768px) {
+            .gallery-caption { font-size: 0.85rem; }
         }
 
         /* Lightbox */
@@ -187,7 +197,6 @@
             .cover-inner h1 { font-size: 2.5rem !important; line-height: 1.1; }
             .cover-inner p.italic { font-size: 0.8rem; margin-bottom: 1.5rem; }
             .cover-inner .text-2xl { font-size: 1.25rem !important; }
-            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -221,7 +230,7 @@
 
         <!-- TRANG 2: Đề tài -->
         <div class="page" id="page2">
-            <h2 class="text-xl font-bold mb-4">1. Đề tài dân dã, hình tượng sinh động, ngộ nghĩnh</h2>
+            <h2 class="text-lg md:text-xl font-bold mb-4">1. Đề tài dân dã, hình tượng sinh động, ngộ nghĩnh</h2>
             <p class="drop-cap">Từ những hình ảnh mộc mạc, bình dị của làng quê như gà, lợn, trâu, bò, tôm, cá,... các nghệ nhân Đông Hồ đã vẽ nên những bức tranh ngộ nghĩnh, tràn đầy sức sống và gửi gắm nhiều ước mong.</p>
             <p>Khi vào tranh, gà thì thành Gà đại cát, Gà thư hùng; trâu thành Trâu sen, lợn thành Lợn đàn, Lợn độc; em bé âu yếm, đùa nghịch với con gà, con tôm thì thành các hình tượng Bé ôm gà, Bé ôm tôm,...</p>
             <p>Những mặt trái, những góc khuất của đời sống nông thôn vào tranh trở thành những câu chuyện hài hước được kể bằng đường nét màu sắc trong Đám cưới chuột, Trạng chuột vinh quy, Thầy đồ Cóc, Truyện Trê – Cóc, Hứng dừa, Đánh ghen,...</p>
@@ -229,7 +238,7 @@
 
         <!-- TRANG 3: Chất liệu -->
         <div class="page" id="page3">
-            <h2 class="text-xl font-bold mb-4">2. Chất liệu tự nhiên, sắc màu bình dị, ấm áp</h2>
+            <h2 class="text-lg md:text-xl font-bold mb-4">2. Chất liệu tự nhiên, sắc màu bình dị, ấm áp</h2>
             <p class="drop-cap">Phong vị dân gian của tranh Đông Hồ thấm nhuần trong ý tưởng, cảm hứng nghệ thuật, đường nét, bố cục cũng như chất liệu giấy, màu sắc, quá trình chế tác,...</p>
             <p>Giấy in tranh Đông Hồ được gọi là giấy điệp: vỏ con điệp (sò biển) được nghiền nát, trộn với hồ rồi dùng chổi lá thông quét lên mặt giấy đó.</p>
             <p>Màu sắc sử dụng trong tranh là màu tự nhiên lấy từ cây cỏ: màu đen từ than xoan hay than lá tre; màu xanh từ gỉ đồng, lá chàm; màu vàng từ hoa hoè; màu đỏ từ sỏi son, gỗ vang,... Bốn gam màu cơ bản này tương ứng với một bộ thường gồm bốn bản khắc gỗ để in tranh Đông Hồ.</p>
@@ -237,7 +246,7 @@
 
         <!-- TRANG 4: Chế tác -->
         <div class="page" id="page4">
-            <h2 class="text-xl font-bold mb-4">3. Chế tác khéo léo, công phu</h2>
+            <h2 class="text-lg md:text-xl font-bold mb-4">3. Chế tác khéo léo, công phu</h2>
             <p class="drop-cap">Các nghệ nhân đã lấy đề tài và ý tưởng ngay trong cuộc sống hằng ngày hoặc từ các truyện dân gian (truyện cổ tích, ngụ ngôn, truyện cười,...) để vẽ mẫu. Khi đã hoàn chỉnh bản thảo, người sáng tác can lại rõ ràng, mạch lạc từng nét, từng bảng màu bằng mực nho lên giấy bản mỏng và sắp xếp đưa vào bản khắc gỗ.</p>
             <p>Mỗi màu được tách riêng thành một bản khắc, một tranh có bao nhiêu màu là có bấy nhiêu bản khắc. Khi in, người làm tranh úp mặt ván khắc đã thấm màu đó lên mặt giấy như cách đóng triện. Tờ giấy sẽ dính vào ván khắc vì màu được pha bằng hồ nếp đặc quánh.</p>
             <p>Thợ in lấy xơ mướp xoa đều lưng mặt giấy để mực màu thấm đều mặt giấy, sau đó nhẹ nhàng bóc tờ giấy khỏi ván in. Tranh bao nhiêu màu, in bấy nhiêu lần.</p>
@@ -245,7 +254,7 @@
 
         <!-- TRANG 5: Tranh Tết -->
         <div class="page" id="page5">
-            <h2 class="text-xl font-bold mb-4">4. Rộn ràng tranh Tết</h2>
+            <h2 class="text-lg md:text-xl font-bold mb-4">4. Rộn ràng tranh Tết</h2>
             <p class="drop-cap">Cứ khoảng tháng 7, tháng 8 hằng năm, là cả làng đã tất bật để chuẩn bị cho mùa tranh Tết, khắp làng rực rỡ sắc màu của giấy điệp, không một mảnh đất trống nào không được người dân làng Hồ tận dụng để phơi giấy.</p>
             <p>Mỗi năm một lần, chợ tranh họp vào tháng Chạp trong các ngày 6, 11, 16, 21, 26. Chợ tranh đông vui, sầm uất được tổ chức ngay trong đình làng. Người buôn tranh mua ở chợ và còn vào từng gia đình đặt và chọn mua.</p>
             <p>Người dân thôn quê mua tranh về dán trên tường, hết năm lại lột bỏ, dùng tranh mới.</p>
@@ -253,7 +262,7 @@
 
         <!-- TRANG 6: Lưu giữ -->
         <div class="page" id="page6">
-            <h2 class="text-xl font-bold mb-4">5. Lưu giữ và phục chế</h2>
+            <h2 class="text-lg md:text-xl font-bold mb-4">5. Lưu giữ và phục chế</h2>
             <p class="drop-cap">Làng tranh Đông Hồ từng có một thời cực thịnh: vào khoảng cuối thế kỉ XIX đến những năm 40 của thế kỉ XX. Tuy nhiên, xu thế thương mại hoá thời kinh tế thị trường gần đây đặt dòng tranh Đông Hồ trước nguy cơ mai một.</p>
             <p>Rất may là ở Đông Hồ, còn có những nghệ nhân, những dòng họ vẫn giàu tâm huyết với nghề. Họ đã cố gắng duy trì, nuôi dưỡng nghề tranh mà bao thế hệ đã góp công gây dựng.</p>
             <p>Đặc biệt, việc kịp thời thu mua lại, lưu giữ cả trăm bản khắc cổ, đồng thời phục chế hàng trăm bản khắc gỗ khác,... là một trong những cách đầu tiên và hiệu quả để cứu nghề tranh Đông Hồ.</p>
@@ -261,70 +270,78 @@
 
         <!-- TRANG 7: Tranh Ngang -->
         <div class="page" id="page7">
-            <h2 class="text-xl font-bold mb-4 text-center uppercase">Tranh Khổ Ngang</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-wider border-b-2 border-[#8b2500] border-opacity-20 pb-2">Tranh Khổ Ngang</h2>
             <div class="gallery-grid">
                 <div class="flex flex-col items-center">
                     <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/%C4%90%C3%A1m_c%C6%B0%E1%BB%9Bi_chu%E1%BB%99t.JPG/500px-%C4%90%C3%A1m_c%C6%B0%E1%BB%9Bi_chu%E1%BB%99t.JPG"></div>
+                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/%C4%90%C3%A1m_c%C6%B0%E1%BB%9Bi_chu%E1%BB%99t.JPG/500px-%C4%90%C3%A1m_c%C6%B0%E1%BB%9Bi_chu%E1%BB%99t.JPG" alt="Tranh Đám Cưới Chuột"></div>
                     </div>
                     <div class="gallery-caption">Đám Cưới Chuột</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Chu%E1%BB%99t_r%C6%B0%E1%BB%9Bc_%C4%91%C3%A8n.JPG/1280px-Chu%E1%BB%99t_r%C6%B0%E1%BB%9Bc_%C4%91%C3%A8n.JPG"></div>
+                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Chu%E1%BB%99t_r%C6%B0%E1%BB%9Bc_%C4%91%C3%A8n.JPG/1280px-Chu%E1%BB%99t_r%C6%B0%E1%BB%9Bc_%C4%91%C3%A8n.JPG" alt="Tranh Chuột Rước Đèn"></div>
                     </div>
                     <div class="gallery-caption">Chuột Rước Đèn</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/vi/7/7c/Tranh_L%E1%BB%A3n.PNG"></div>
+                        <div class="frame-inner"><img src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/tranh-dong-ho-2.jpg" alt="Tranh Lợn Đàn"></div>
                     </div>
                     <div class="gallery-caption">Lợn Đàn</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="http://tranhdangiandongho.vn/upload/files/2(1).jpg"></div>
+                        <div class="frame-inner"><img src="https://www.elledecoration.vn/wp-content/uploads/2025/03/DongHo-netviet-01.jpg" alt="Tranh Gà Đàn"></div>
+                    </div>
+                    <div class="gallery-caption">Gà Đàn</div>
+                </div>
+                <div class="flex flex-col items-center col-span-2 mt-2">
+                    <div class="frame landscape max-w-[80%] mx-auto" onclick="showImg(this)">
+                        <div class="frame-inner"><img src="http://tranhdangiandongho.vn/upload/files/2(1).jpg" alt="Tranh Vinh Quy Bái Tổ"></div>
                     </div>
                     <div class="gallery-caption">Vinh Quy Bái Tổ</div>
                 </div>
             </div>
+            <p class="mt-8 text-xs italic text-center text-gray-500">* Chạm vào tranh để xem kích thước đầy đủ</p>
         </div>
 
         <!-- TRANG 8: Tranh Dọc -->
         <div class="page" id="page8">
-            <h2 class="text-xl font-bold mb-4 text-center uppercase">Tranh Khổ Dọc</h2>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-wider border-b-2 border-[#8b2500] border-opacity-20 pb-2">Tranh Khổ Dọc</h2>
             <div class="gallery-grid">
                 <div class="flex flex-col items-center">
                     <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Vinh_hoa.JPG"></div>
+                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Vinh_hoa.JPG" alt="Tranh Vinh Hoa"></div>
                     </div>
                     <div class="gallery-caption">Vinh Hoa</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ph%C3%BA_qu%C3%BD.JPG/330px-Ph%C3%BA_qu%C3%BD.JPG"></div>
+                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ph%C3%BA_qu%C3%BD.JPG/330px-Ph%C3%BA_qu%C3%BD.JPG" alt="Tranh Phú Quý"></div>
                     </div>
                     <div class="gallery-caption">Phú Quý</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/%C4%90%C3%A1nh_ghen.JPG"></div>
+                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/%C4%90%C3%A1nh_ghen.JPG" alt="Tranh Đánh Ghen"></div>
                     </div>
                     <div class="gallery-caption">Đánh Ghen</div>
                 </div>
                 <div class="flex flex-col items-center">
                     <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/6/68/H%C3%A1i_d%E1%BB%ABa.JPG"></div>
+                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/6/68/H%C3%A1i_d%E1%BB%ABa.JPG" alt="Tranh Hái Dừa"></div>
                     </div>
                     <div class="gallery-caption">Hái Dừa</div>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://phapluat.tuoitrethudo.vn/stores/news_dataimages/phamhongmanh/022021/06/22/3938_Tranh_Dong_Ho.jpg?rt=20210206224211"></div>
+                <div class="flex flex-col items-center col-span-2">
+                    <div class="frame portrait max-w-[50%] mx-auto" onclick="showImg(this)">
+                        <div class="frame-inner"><img src="https://phapluat.tuoitrethudo.vn/stores/news_dataimages/phamhongmanh/022021/06/22/3938_Tranh_Dong_Ho.jpg?rt=20210206224211" alt="Tranh Trâu Sen"></div>
                     </div>
                     <div class="gallery-caption">Trâu Sen</div>
                 </div>
             </div>
+            <p class="mt-8 text-xs italic text-center text-gray-500">* Chạm vào tranh để xem kích thước đầy đủ</p>
         </div>
 
         </div>
