@@ -198,6 +198,34 @@
             .cover-inner p.italic { font-size: 0.8rem; margin-bottom: 1.5rem; }
             .cover-inner .text-2xl { font-size: 1.25rem !important; }
         }
+
+        /* Audio Button Style */
+        .audio-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #8b2500;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            z-index: 20;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .audio-btn:hover { transform: scale(1.1); background: #a52a2a; }
+        .audio-btn.playing { animation: pulse 1.5s infinite; background: #4caf50; }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+        }
     </style>
 </head>
 <body>
@@ -230,7 +258,10 @@
 
         <!-- TRANG 2: Đề tài -->
         <div class="page" id="page2">
-            <h2 class="text-lg md:text-xl font-bold mb-4">1. Đề tài dân dã, hình tượng sinh động, ngộ nghĩnh</h2>
+            <button class="audio-btn" onclick="toggleAudio(2, 'https://files.catbox.moe/tsbm5a.mp3', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
+            </button>
+            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">1. Đề tài dân dã, hình tượng sinh động, ngộ nghĩnh</h2>
             <p class="drop-cap">Từ những hình ảnh mộc mạc, bình dị của làng quê như gà, lợn, trâu, bò, tôm, cá,... các nghệ nhân Đông Hồ đã vẽ nên những bức tranh ngộ nghĩnh, tràn đầy sức sống và gửi gắm nhiều ước mong.</p>
             <p>Khi vào tranh, gà thì thành Gà đại cát, Gà thư hùng; trâu thành Trâu sen, lợn thành Lợn đàn, Lợn độc; em bé âu yếm, đùa nghịch với con gà, con tôm thì thành các hình tượng Bé ôm gà, Bé ôm tôm,...</p>
             <p>Những mặt trái, những góc khuất của đời sống nông thôn vào tranh trở thành những câu chuyện hài hước được kể bằng đường nét màu sắc trong Đám cưới chuột, Trạng chuột vinh quy, Thầy đồ Cóc, Truyện Trê – Cóc, Hứng dừa, Đánh ghen,...</p>
@@ -238,7 +269,10 @@
 
         <!-- TRANG 3: Chất liệu -->
         <div class="page" id="page3">
-            <h2 class="text-lg md:text-xl font-bold mb-4">2. Chất liệu tự nhiên, sắc màu bình dị, ấm áp</h2>
+            <button class="audio-btn" onclick="toggleAudio(3, 'https://files.catbox.moe/oznaqt.mp3', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
+            </button>
+            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">2. Chất liệu tự nhiên, sắc màu bình dị, ấm áp</h2>
             <p class="drop-cap">Phong vị dân gian của tranh Đông Hồ thấm nhuần trong ý tưởng, cảm hứng nghệ thuật, đường nét, bố cục cũng như chất liệu giấy, màu sắc, quá trình chế tác,...</p>
             <p>Giấy in tranh Đông Hồ được gọi là giấy điệp: vỏ con điệp (sò biển) được nghiền nát, trộn với hồ rồi dùng chổi lá thông quét lên mặt giấy đó.</p>
             <p>Màu sắc sử dụng trong tranh là màu tự nhiên lấy từ cây cỏ: màu đen từ than xoan hay than lá tre; màu xanh từ gỉ đồng, lá chàm; màu vàng từ hoa hoè; màu đỏ từ sỏi son, gỗ vang,... Bốn gam màu cơ bản này tương ứng với một bộ thường gồm bốn bản khắc gỗ để in tranh Đông Hồ.</p>
@@ -246,7 +280,10 @@
 
         <!-- TRANG 4: Chế tác -->
         <div class="page" id="page4">
-            <h2 class="text-lg md:text-xl font-bold mb-4">3. Chế tác khéo léo, công phu</h2>
+            <button class="audio-btn" onclick="toggleAudio(4, 'https://files.catbox.moe/oblzxa.mp3', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
+            </button>
+            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">3. Chế tác khéo léo, công phu</h2>
             <p class="drop-cap">Các nghệ nhân đã lấy đề tài và ý tưởng ngay trong cuộc sống hằng ngày hoặc từ các truyện dân gian (truyện cổ tích, ngụ ngôn, truyện cười,...) để vẽ mẫu. Khi đã hoàn chỉnh bản thảo, người sáng tác can lại rõ ràng, mạch lạc từng nét, từng bảng màu bằng mực nho lên giấy bản mỏng và sắp xếp đưa vào bản khắc gỗ.</p>
             <p>Mỗi màu được tách riêng thành một bản khắc, một tranh có bao nhiêu màu là có bấy nhiêu bản khắc. Khi in, người làm tranh úp mặt ván khắc đã thấm màu đó lên mặt giấy như cách đóng triện. Tờ giấy sẽ dính vào ván khắc vì màu được pha bằng hồ nếp đặc quánh.</p>
             <p>Thợ in lấy xơ mướp xoa đều lưng mặt giấy để mực màu thấm đều mặt giấy, sau đó nhẹ nhàng bóc tờ giấy khỏi ván in. Tranh bao nhiêu màu, in bấy nhiêu lần.</p>
@@ -254,7 +291,10 @@
 
         <!-- TRANG 5: Tranh Tết -->
         <div class="page" id="page5">
-            <h2 class="text-lg md:text-xl font-bold mb-4">4. Rộn ràng tranh Tết</h2>
+            <button class="audio-btn" onclick="toggleAudio(5, 'https://files.catbox.moe/svvztk.mp3', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
+            </button>
+            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">4. Rộn ràng tranh Tết</h2>
             <p class="drop-cap">Cứ khoảng tháng 7, tháng 8 hằng năm, là cả làng đã tất bật để chuẩn bị cho mùa tranh Tết, khắp làng rực rỡ sắc màu của giấy điệp, không một mảnh đất trống nào không được người dân làng Hồ tận dụng để phơi giấy.</p>
             <p>Mỗi năm một lần, chợ tranh họp vào tháng Chạp trong các ngày 6, 11, 16, 21, 26. Chợ tranh đông vui, sầm uất được tổ chức ngay trong đình làng. Người buôn tranh mua ở chợ và còn vào từng gia đình đặt và chọn mua.</p>
             <p>Người dân thôn quê mua tranh về dán trên tường, hết năm lại lột bỏ, dùng tranh mới.</p>
@@ -262,7 +302,10 @@
 
         <!-- TRANG 6: Lưu giữ -->
         <div class="page" id="page6">
-            <h2 class="text-lg md:text-xl font-bold mb-4">5. Lưu giữ và phục chế</h2>
+            <button class="audio-btn" onclick="toggleAudio(6, 'https://files.catbox.moe/46zbwx.mp3', this)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
+            </button>
+            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">5. Lưu giữ và phục chế</h2>
             <p class="drop-cap">Làng tranh Đông Hồ từng có một thời cực thịnh: vào khoảng cuối thế kỉ XIX đến những năm 40 của thế kỉ XX. Tuy nhiên, xu thế thương mại hoá thời kinh tế thị trường gần đây đặt dòng tranh Đông Hồ trước nguy cơ mai một.</p>
             <p>Rất may là ở Đông Hồ, còn có những nghệ nhân, những dòng họ vẫn giàu tâm huyết với nghề. Họ đã cố gắng duy trì, nuôi dưỡng nghề tranh mà bao thế hệ đã góp công gây dựng.</p>
             <p>Đặc biệt, việc kịp thời thu mua lại, lưu giữ cả trăm bản khắc cổ, đồng thời phục chế hàng trăm bản khắc gỗ khác,... là một trong những cách đầu tiên và hiệu quả để cứu nghề tranh Đông Hồ.</p>
@@ -356,8 +399,13 @@
     <script>
         let currentPage = 1;
         const totalPages = 8;
+        let currentAudio = null;
+        let currentAudioBtn = null;
 
         function changePage(direction) {
+            // Dừng âm thanh khi chuyển trang
+            stopAllAudio();
+
             if (direction === 1 && currentPage < totalPages) {
                 document.getElementById(`page${currentPage}`).classList.add('flipped');
                 currentPage++;
@@ -372,6 +420,39 @@
             
             const activePage = document.getElementById(`page${currentPage}`);
             if (activePage) activePage.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleAudio(page, url, btn) {
+            if (currentAudio && currentAudio.src === url) {
+                if (currentAudio.paused) {
+                    currentAudio.play();
+                    btn.classList.add('playing');
+                } else {
+                    currentAudio.pause();
+                    btn.classList.remove('playing');
+                }
+            } else {
+                stopAllAudio();
+                currentAudio = new Audio(url);
+                currentAudioBtn = btn;
+                currentAudio.play();
+                btn.classList.add('playing');
+                
+                currentAudio.onended = () => {
+                    btn.classList.remove('playing');
+                };
+            }
+        }
+
+        function stopAllAudio() {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+            if (currentAudioBtn) {
+                currentAudioBtn.classList.remove('playing');
+                currentAudioBtn = null;
+            }
         }
 
         function showImg(el) {
