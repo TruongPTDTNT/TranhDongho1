@@ -194,8 +194,8 @@
 
         @media (max-width: 480px) {
             .cover-inner h1 { font-size: 2.5rem !important; line-height: 1.1; }
-            .cover-inner p.italic { font-size: 0.8rem; margin-bottom: 1.5rem; }
-            .cover-inner .text-2xl { font-size: 1.25rem !important; }
+            .cover-inner p.italic { font-size: 0.8rem; margin-bottom: 1rem; }
+            .cover-inner .text-2xl { font-size: 1.15rem !important; }
         }
 
         .audio-btn {
@@ -240,14 +240,17 @@
             <div class="cover-page">
                 <div class="cover-border">
                     <div class="cover-inner">
-                        <p class="text-[10px] tracking-[0.3em] uppercase mb-2 opacity-70">Di sản văn hóa Việt Nam</p>
-                        <h1 class="text-4xl md:text-6xl font-black mb-4">TRANH<br>ĐÔNG HỒ</h1>
-                        <div class="w-16 h-1 bg-[#8b2500] mb-4"></div>
-                        <p class="italic mb-6 text-gray-600 text-sm md:text-base px-2">"Hồn dân tộc sáng bừng trên giấy điệp"</p>
+                        <p class="text-[10px] tracking-[0.3em] uppercase mb-1 opacity-70">Di sản văn hóa Việt Nam</p>
+                        <h1 class="text-4xl md:text-6xl font-black mb-3">TRANH<br>ĐÔNG HỒ</h1>
+                        <div class="w-16 h-1 bg-[#8b2500] mb-3"></div>
+                        <p class="italic mb-4 text-gray-600 text-sm md:text-base px-2">"Hồn dân tộc sáng bừng trên giấy điệp"</p>
                         
-                        <div class="mt-4 pt-6 border-t border-[#8b2500] border-opacity-30 w-full max-w-[200px]">
-                            <p class="text-[9px] uppercase tracking-widest text-gray-500 mb-1">Nhóm thực hiện</p>
-                            <p class="font-bold text-[#8b2500] text-lg md:text-2xl">Đội steam Ngữ văn Khối 10 Trường PTDTNT </p>
+                        <div class="mt-2 pt-4 border-t border-[#8b2500] border-opacity-30 w-full max-w-[280px]">
+                            <p class="text-[9px] uppercase tracking-widest text-gray-500 mb-0.5">Nhóm Thực hiện:</p>
+                            <p class="font-bold text-[#8b2500] text-base md:text-lg leading-tight">
+                                Đội STEAM Ngữ văn Khối 10<br>
+                                <span class="text-sm md:text-base font-semibold opacity-90">Trường PTDTNT</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -304,7 +307,7 @@
             </button>
             <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">5. Lưu giữ và phục chế</h2>
             <p class="drop-cap">Làng tranh Đông Hồ từng có một thời cực thịnh: vào khoảng cuối thế kỉ XIX đến những năm 40 của thế kỉ XX. Tuy nhiên, xu thế thương mại hoá thời kinh tế thị trường gần đây đặt dòng tranh Đông Hồ cũng như các dòng tranh dân gian khác trước nguy cơ mai một, thất truyền.</p>
-            <p>Rất may là ở Đông Hồ, còn có những nghệ nhân, những dòng họ vẫn giàu tâm huyết with nghề. Họ đã cố gắng vượt qua nhiều khó khăn, chật vật của đời sống thường ngày để duy trì, nuôi dưỡng nghề tranh mà bao thế hệ đã góp công gây dựng.</p>
+            <p>Rất may là ở Đông Hồ, còn có những nghệ nhân, những dòng họ vẫn giàu tâm huyết với nghề. Họ đã cố gắng vượt qua nhiều khó khăn, chật vật của đời sống thường ngày để duy trì, nuôi dưỡng nghề tranh mà bao thế hệ đã góp công gây dựng.</p>
             <p>Đặc biệt, việc kịp thời thu mua lại, lưu giữ cả trăm bản khắc cổ, đồng thời phục chế hàng trăm bản khắc gỗ khác,... là một trong những cách đầu tiên và hiệu quả để cứu nghề tranh Đông Hồ.</p>
         </div>
 
@@ -425,7 +428,6 @@
                     playPromise = currentAudio.play();
                     btn.classList.add('playing');
                 } else {
-                    // Tránh lỗi AbortError: đợi play promise hoàn tất trước khi pause
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
                             currentAudio.pause();
@@ -451,7 +453,6 @@
 
         function stopAllAudio() {
             if (currentAudio) {
-                // Kiểm tra playPromise để tránh ngắt quãng yêu cầu đang xử lý
                 if (playPromise !== undefined) {
                     playPromise.then(() => {
                         currentAudio.pause();
