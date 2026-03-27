@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuốn sách: Tranh Đông Hồ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:wght@500;700;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #2c2724; 
@@ -16,7 +16,7 @@
             min-height: 100vh;
             margin: 0;
             padding: 10px;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         .main-container {
@@ -31,7 +31,7 @@
             perspective: 2500px;
             width: 100%;
             height: 85vh;
-            min-height: 550px;
+            min-height: 600px;
             max-height: 900px;
             position: relative;
             transform-style: preserve-3d;
@@ -50,57 +50,49 @@
                 inset 4px 0 10px rgba(0,0,0,0.1),
                 inset -1px 0 2px rgba(255,255,255,0.5),
                 10px 15px 30px rgba(0,0,0,0.4);
-            padding: 20px;
+            padding: 25px;
             font-family: 'Lora', serif;
             color: #332d29;
             transform-origin: left center;
-            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s, visibility 0s 0.4s;
             backface-visibility: hidden;
             overflow-y: auto;
+            visibility: visible;
         }
 
-        @media (min-width: 768px) {
-            .page { padding: 40px 40px 60px 60px; }
-        }
-
-        .page::-webkit-scrollbar { width: 5px; }
-        .page::-webkit-scrollbar-thumb { background: #8b250044; border-radius: 10px; }
-
-        .page::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; bottom: 0;
-            width: 30px;
-            background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.05) 10%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%);
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        #page1 { z-index: 8; }
-        #page2 { z-index: 7; }
-        #page3 { z-index: 6; }
-        #page4 { z-index: 5; }
-        #page5 { z-index: 4; }
-        #page6 { z-index: 3; }
-        #page7 { z-index: 2; }
-        #page8 { z-index: 1; }
+        #page1 { z-index: 90; }
+        #page2 { z-index: 80; }
+        #page3 { z-index: 70; }
+        #page4 { z-index: 60; }
+        #page5 { z-index: 50; }
+        #page6 { z-index: 40; }
+        #page7 { z-index: 30; }
+        #page8 { z-index: 20; }
+        #page9 { z-index: 10; }
 
         .page.flipped {
             transform: rotateY(-180deg);
-            pointer-events: none;
+            z-index: 0 !important;
+            visibility: hidden;
+            transition: transform 0.8s, z-index 0s 0.8s, visibility 0s 0.8s;
         }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: #8b2500; }
-
-        .drop-cap::first-letter {
-            font-size: 3.5em; float: left; line-height: 0.8; margin-right: 8px; color: #8b2500;
+        .title-art {
+            font-family: 'Playfair Display', serif;
+            color: #8b2500;
+            letter-spacing: 0.05em;
         }
 
-        p { line-height: 1.6; margin-bottom: 0.8rem; text-align: justify; font-size: 0.95rem; }
+        .sub-title-art {
+            font-family: 'Dancing Script', cursive;
+            color: #5d4037;
+            font-size: 1.4rem;
+        }
 
         .controls {
             display: flex; justify-content: space-between; align-items: center;
             width: 100%; margin-top: 15px;
+            z-index: 100;
         }
 
         .btn {
@@ -108,304 +100,310 @@
             padding: 8px 16px; border-radius: 6px; cursor: pointer;
             font-family: 'Playfair Display', serif; font-weight: bold;
             box-shadow: 2px 4px 8px rgba(0,0,0,0.3); transition: 0.3s;
-            font-size: 0.9rem;
         }
 
         .btn:hover:not(:disabled) { background-color: #8b2500; color: #fdfbf5; }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .page-number { color: white; font-style: italic; text-shadow: 1px 1px 2px black; font-size: 0.85rem; }
+        .page-number { color: white; font-style: italic; text-shadow: 1px 1px 2px black; }
 
-        .gallery-grid {
+        .appendix-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 10px;
+            grid-template-columns: repeat(2, 1fr); /* Đổi thành 2 cột để ảnh to hơn */
+            gap: 20px;
+            margin-top: 15px;
         }
 
-        .frame {
-            background-color: #d7c4a5; 
-            border: 4px solid #5d4037; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            display: flex; justify-content: center; align-items: center;
-            padding: 2px; transition: 0.3s;
-            overflow: hidden;
-            border-radius: 2px;
-            cursor: zoom-in;
-            width: 100%;
-        }
-        
-        @media (min-width: 768px) {
-            .frame { border-width: 6px; padding: 3px; }
-            .gallery-grid { gap: 20px; }
-        }
-
-        .frame:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
-
-        .frame-inner {
-            width: 100%; height: 100%;
-            background-color: #f4e9d5; 
-            overflow: hidden;
+        .appendix-item {
+            background: rgba(215, 196, 165, 0.15);
+            border: 1px solid #8b250022;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
         }
 
-        .frame-inner img {
+        .appendix-item:hover {
+            background: #fff;
+            transform: translateY(-5px);
+            border-color: #8b2500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .appendix-thumb-container {
+            width: 100%;
+            aspect-ratio: 1/1; /* Kích thước vuông đồng nhất */
+            overflow: hidden;
+            background: white;
+            margin-bottom: 8px;
+            border: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .appendix-thumb {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
-            display: block;
+            object-fit: contain; /* Giữ nguyên tỷ lệ ảnh gốc */
         }
 
-        .landscape { aspect-ratio: 1.4; }
-        .portrait { aspect-ratio: 0.7; }
-
-        .gallery-caption {
-            font-family: 'Playfair Display', serif; font-size: 0.75rem;
-            font-weight: bold; text-align: center; margin-top: 6px; color: #3e2723;
-            line-height: 1.2;
-            letter-spacing: 0.02em;
-        }
-        
-        @media (min-width: 768px) {
-            .gallery-caption { font-size: 0.85rem; }
+        .item-label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #8b2500;
+            margin-top: 5px;
         }
 
-        #lightbox {
+        #detailModal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0,0,0,0.92);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
+            padding: 20px;
         }
 
-        #lightbox img {
-            max-width: 95%;
-            max-height: 90%;
-            border: 5px solid #fdfbf5;
+        .modal-content {
+            background: #fdfbf5;
+            max-width: 750px;
+            width: 100%;
+            max-height: 95vh;
+            border-radius: 4px;
+            overflow-y: auto;
+            position: relative;
+            padding: 30px;
+            border: 8px double #8b250033;
         }
 
-        .cover-page { text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px; }
-        .cover-border { border: 2px solid #8b2500; padding: 4px; width: 100%; height: 100%; display: flex; }
-        .cover-inner { border: 1px solid #8b2500; padding: 15px; height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; }
-
-        @media (max-width: 480px) {
-            .cover-inner h1 { font-size: 2.5rem !important; line-height: 1.1; }
-            .cover-inner p.italic { font-size: 0.8rem; margin-bottom: 1rem; }
-            .cover-inner .text-2xl { font-size: 1.15rem !important; }
-        }
-
-        .audio-btn {
+        .close-modal {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #8b2500;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            top: 10px; right: 15px;
+            font-size: 2.5rem;
+            color: #8b2500;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            z-index: 20;
-            transition: transform 0.2s, background 0.2s;
+            z-index: 10;
         }
-        .audio-btn:hover { transform: scale(1.1); background: #a52a2a; }
-        .audio-btn.playing { animation: pulse 1.5s infinite; background: #4caf50; }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+
+        .modal-img-container {
+            width: 100%;
+            background: white;
+            padding: 15px;
+            border: 1px solid #d7c4a5;
+            margin-bottom: 20px;
+        }
+
+        .modal-img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 15px;
+            background: #8b2500;
+            color: #fdfbf5;
+            border-radius: 2px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .empty-page-placeholder {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed #8b250044;
+            color: #8b250066;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
-    <div id="lightbox" onclick="this.style.display='none'">
-        <img id="lightboxImg" src="" alt="Phóng to">
+    <div id="detailModal">
+        <div class="modal-content text-center">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="modalTag" class="tag">Phân loại</div>
+            <h2 id="modalTitle" class="text-3xl font-bold title-art mb-4">Tên Tranh</h2>
+            <div class="modal-img-container">
+                <img id="modalImg" class="modal-img" src="" alt="Tranh">
+            </div>
+            <div class="text-left px-4">
+                <h3 class="text-xl font-bold title-art mb-2 border-b border-[#8b250022] pb-1">Ý nghĩa nội dung</h3>
+                <p id="modalMeaning" class="text-gray-700 leading-relaxed italic text-lg"></p>
+            </div>
+        </div>
     </div>
 
     <div class="main-container">
         <div class="book-wrapper">
         
-        <!-- TRANG 1: Bìa -->
-        <div class="page" id="page1">
-            <div class="cover-page">
-                <div class="cover-border">
-                    <div class="cover-inner">
-                        <p class="text-[10px] tracking-[0.3em] uppercase mb-1 opacity-70">Di sản văn hóa Việt Nam</p>
-                        <h1 class="text-4xl md:text-6xl font-black mb-3">TRANH<br>ĐÔNG HỒ</h1>
-                        <div class="w-16 h-1 bg-[#8b2500] mb-3"></div>
-                        <p class="italic mb-4 text-gray-600 text-sm md:text-base px-2">"Hồn dân tộc sáng bừng trên giấy điệp"</p>
-                        
-                        <div class="mt-2 pt-4 border-t border-[#8b2500] border-opacity-30 w-full max-w-[280px]">
-                            <p class="text-[9px] uppercase tracking-widest text-gray-500 mb-0.5">Nhóm Thực hiện:</p>
-                            <p class="font-bold text-[#8b2500] text-base md:text-lg leading-tight">
-                                Đội STEAM Ngữ văn Khối 10<br>
-                                <span class="text-sm md:text-base font-semibold opacity-90">Trường PTDTNT</span>
-                            </p>
+            <!-- Trang 1: Bìa -->
+            <div class="page" id="page1">
+                <div class="flex flex-col items-center justify-center h-full border-4 border-[#8b2500] p-4">
+                    <div class="border border-[#8b2500] w-full h-full flex flex-col items-center justify-center p-6 text-center">
+                        <p class="uppercase tracking-widest text-xs mb-2">Di sản văn hóa Việt Nam</p>
+                        <h1 class="text-5xl md:text-7xl font-black title-art mb-4">TRANH<br>ĐÔNG HỒ</h1>
+                        <div class="w-20 h-1.5 bg-[#8b2500] mb-6 mx-auto"></div>
+                        <p class="sub-title-art mb-10">"Hồn dân tộc sáng bừng trên giấy điệp"</p>
+                        <div class="text-center">
+                            <p class="text-xs uppercase opacity-60">Thực hiện bởi:</p>
+                            <p class="font-bold text-xl title-art">Đội STEAM Ngữ văn Khối 10</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- TRANG 2: Đề tài -->
-        <div class="page" id="page2">
-            <button class="audio-btn" onclick="toggleAudio(2, 'https://files.catbox.moe/mvwxs9.MP3', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
-            </button>
-            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12 leading-snug">1. Đề tài dân dã, hình tượng sinh động, ngộ nghĩnh</h2>
-            <p class="drop-cap">Từ những hình ảnh mộc mạc, bình dị của làng quê như gà, lợn, trâu, bò, tôm, cá,... các nghệ nhân Đông Hồ đã vẽ nên những bức tranh ngộ nghĩnh, tràn đầy sức sống và gửi gắm nhiều ước mong.</p>
-            <p>Khi vào tranh, gà thì thành Gà đại cát, Gà thư hùng; trâu thành Trâu sen, lợn thành Lợn đàn, Lợn độc; em bé âu yếm, đùa nghịch với con gà, con tôm thì thành các hình tượng Bé ôm gà, Bé ôm tôm,...</p>
-            <p>Những mặt trái, những góc khuất của đời sống nông thôn vào tranh trở thành những câu chuyện hài hước được kể bằng đường nét, màu sắc trong Đám cưới chuột, Trạng chuột vinh quy, Thầy đồ Cóc, Truyện Trê – Cóc, Hứng dừa, Đánh ghen,...</p>
-        </div>
+            <!-- Các trang nội dung ẩn -->
+            <div class="page" id="page2"><div class="empty-page-placeholder"><p>Nội dung trang 2</p></div></div>
+            <div class="page" id="page3"><div class="empty-page-placeholder"><p>Nội dung trang 3</p></div></div>
+            <div class="page" id="page4"><div class="empty-page-placeholder"><p>Nội dung trang 4</p></div></div>
+            <div class="page" id="page5"><div class="empty-page-placeholder"><p>Nội dung trang 5</p></div></div>
+            <div class="page" id="page6"><div class="empty-page-placeholder"><p>Nội dung trang 6</p></div></div>
 
-        <!-- TRANG 3: Chất liệu -->
-        <div class="page" id="page3">
-            <button class="audio-btn" onclick="toggleAudio(3, 'https://files.catbox.moe/xo6jar.MP3', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
-            </button>
-            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">2. Chất liệu tự nhiên, sắc màu bình dị, ấm áp</h2>
-            <p class="drop-cap">Phong vị dân gian của tranh Đông Hồ thấm nhuần trong ý tưởng, cảm hứng nghệ thuật, đường nét, bố cục cũng như chất liệu giấy, màu sắc, quá trình chế tác,...</p>
-            <p>Giấy in tranh Đông Hồ được gọi là giấy điệp: vỏ con điệp (sò biển) được nghiền nát, trộn với hồ rồi dùng chổi lá thông quét lên mặt giấy dó. Màu sắc sử dụng trong tranh là màu tự nhiên lấy từ cây cỏ: màu đen từ than xoan hay than lá tre; màu xanh từ gỉ đồng, lá chàm; màu vàng từ hoa hoè; màu đỏ từ sỏi son, gỗ vang,... Bốn gam màu cơ bản này tương ứng với một bộ thường gồm bốn bản khắc gỗ để in tranh Đông Hồ.</p>
-        </div>
-
-        <!-- TRANG 4: Chế tác -->
-        <div class="page" id="page4">
-            <button class="audio-btn" onclick="toggleAudio(4, 'https://files.catbox.moe/4yrew9.MP3', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
-            </button>
-            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">3. Chế tác khéo léo, công phu</h2>
-            <p class="drop-cap">Các nghệ nhân đã lấy đề tài và ý tưởng ngay trong cuộc sống hằng ngày hoặc từ các truyện dân gian (truyện cổ tích, ngụ ngôn, truyện cười,...) để vẽ mẫu. Khi đã hoàn chỉnh bản thảo, người sáng tác can lại rõ ràng, mạch lạc từng nét, từng bảng màu bằng mực nho lên giấy bản mỏng và sắp xếp đưa vào bản khắc gỗ. Mỗi màu được tách riêng thành một bản khắc, một tranh có bao nhiêu màu là có bấy nhiêu bản khắc.</p>
-            <p>Khi in, người làm tranh đặt cả xấp giấy in thành từng chồng trước mặt, tay phải cầm "tay co" đóng sau lưng ván in, úp ván xuống "bìa" đã quét đẫm màu, được làm theo kiểu hộp mực dấu để lấy màu vào bản khắc, rồi úp mặt ván khắc đã thấm màu đó lên mặt giấy như cách đóng triện, xong lật ngửa ván khắc lên, tờ giấy đã dính vào ván khắc vì màu được pha bằng hồ nếp đặc quánh.</p>
-            <p>Thợ in lấy xơ mướp xoa đều lưng mặt giấy để mực màu thấm đều mặt giấy, sau đó nhẹ nhàng bóc tờ giấy khỏi ván in, sẽ được một lần in. Tranh bao nhiêu màu, in bấy nhiêu lần.</p>
-        </div>
-
-        <!-- TRANG 5: Tranh Tết -->
-        <div class="page" id="page5">
-            <button class="audio-btn" onclick="toggleAudio(5, 'https://files.catbox.moe/uzloe6.MP3', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
-            </button>
-            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">4. Rộn ràng tranh Tết</h2>
-            <p class="drop-cap">Cứ khoảng tháng 7, tháng 8 hằng năm, là cả làng đã tất bật để chuẩn bị cho mùa tranh Tết, khắp làng rực rỡ sắc màu của giấy điệp, không một mảnh đất trống nào không được người dân làng Hồ tận dụng để phơi giấy: từ sân nhà, sân đình, ven các ngõ xóm, đường làng, dọc theo triền đê cho đến các nóc nhà, nóc bếp,... </p>
-            <p>Mỗi năm một lần, chợ tranh họp vào tháng Chạp trong các ngày 6, 11, 16, 21, 26. Chợ tranh đông vui, sầm uất được tổ chức ngay trong đình làng. Người buôn tranh mua ở chợ và còn vào từng gia đình đặt và chọn mua. Họ mang cả những đặc sản địa phương tới bán và đổi tranh.</p>
-            <p>Người dân thôn quê mua tranh về dán trên tường, hết năm lại lột bỏ, dùng tranh mới.</p>
-        </div>
-
-        <!-- TRANG 6: Lưu giữ -->
-        <div class="page" id="page6">
-            <button class="audio-btn" onclick="toggleAudio(6, 'https://files.catbox.moe/dcseix.MP3', this)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/><path d="M8.707 11.182A4.486 4.486 0 0 0 10.025 8a4.486 4.486 0 0 0-1.318-3.182L8 5.525A3.489 3.489 0 0 1 9.025 8 3.49 3.49 0 0 1 8 10.475l.707.707zM6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06z"/></svg>
-            </button>
-            <h2 class="text-lg md:text-xl font-bold mb-4 pr-12">5. Lưu giữ và phục chế</h2>
-            <p class="drop-cap">Làng tranh Đông Hồ từng có một thời cực thịnh: vào khoảng cuối thế kỉ XIX đến những năm 40 của thế kỉ XX. Tuy nhiên, xu thế thương mại hoá thời kinh tế thị trường gần đây đặt dòng tranh Đông Hồ cũng như các dòng tranh dân gian khác trước nguy cơ mai một, thất truyền.</p>
-            <p>Rất may là ở Đông Hồ, còn có những nghệ nhân, những dòng họ vẫn giàu tâm huyết với nghề. Họ đã cố gắng vượt qua nhiều khó khăn, chật vật của đời sống thường ngày để duy trì, nuôi dưỡng nghề tranh mà bao thế hệ đã góp công gây dựng.</p>
-            <p>Đặc biệt, việc kịp thời thu mua lại, lưu giữ cả trăm bản khắc cổ, đồng thời phục chế hàng trăm bản khắc gỗ khác,... là một trong những cách đầu tiên và hiệu quả để cứu nghề tranh Đông Hồ.</p>
-        </div>
-
-        <!-- TRANG 7: Tranh Ngang -->
-        <div class="page" id="page7">
-            <h2 class="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-wider border-b-2 border-[#8b2500] border-opacity-20 pb-2">Tranh Khổ Ngang</h2>
-            <div class="gallery-grid">
-                <div class="flex flex-col items-center">
-                    <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/%C4%90%C3%A1m_c%C6%B0%E1%BB%9Bi_chu%E1%BB%99t.JPG/500px-%C4%90%C3%A1m_c%C6%B0%E1%BB%9Bi_chu%E1%BB%99t.JPG" alt="Tranh Đám Cưới Chuột"></div>
-                    </div>
-                    <div class="gallery-caption">Đám Cưới Chuột</div>
+            <!-- Trang 7: Phụ lục 1 -->
+            <div class="page" id="page7">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-bold title-art">PHỤ LỤC: DANH TÁC (1)</h2>
+                    <div class="w-24 h-0.5 bg-[#8b250044] mx-auto mt-1"></div>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Chu%E1%BB%99t_r%C6%B0%E1%BB%9Bc_%C4%91%C3%A8n.JPG/1280px-Chu%E1%BB%99t_r%C6%B0%E1%BB%9Bc_%C4%91%C3%A8n.JPG" alt="Tranh Chuột Rước Đèn"></div>
-                    </div>
-                    <div class="gallery-caption">Chuột Rước Đèn</div>
+                <div class="appendix-grid" id="appendix1"></div>
+            </div>
+
+            <!-- Trang 8: Phụ lục 2 (Trang mới tạo) -->
+            <div class="page" id="page8">
+                <div class="text-center mb-6">
+                    <h2 class="text-3xl font-bold title-art">PHỤ LỤC: DANH TÁC (2)</h2>
+                    <div class="w-24 h-0.5 bg-[#8b250044] mx-auto mt-1"></div>
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/08/tranh-dong-ho-2.jpg" alt="Tranh Lợn Đàn"></div>
-                    </div>
-                    <div class="gallery-caption">Lợn Đàn</div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame landscape" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://www.elledecoration.vn/wp-content/uploads/2025/03/DongHo-netviet-01.jpg" alt="Tranh Gà Đàn"></div>
-                    </div>
-                    <div class="gallery-caption">Gà Đàn</div>
-                </div>
-                <div class="flex flex-col items-center col-span-2 mt-2">
-                    <div class="frame landscape max-w-[80%] mx-auto" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="http://tranhdangiandongho.vn/upload/files/2(1).jpg" alt="Tranh Vinh Quy Bái Tổ"></div>
-                    </div>
-                    <div class="gallery-caption">Vinh Quy Bái Tổ</div>
+                <div class="appendix-grid" id="appendix2"></div>
+                <div class="mt-8 text-center">
+                    <p class="text-[10px] uppercase tracking-widest text-gray-400 italic font-bold">Chạm vào tranh để xem chi tiết ý nghĩa</p>
                 </div>
             </div>
-            <p class="mt-8 text-xs italic text-center text-gray-500">* Chạm vào tranh để xem kích thước đầy đủ</p>
-        </div>
 
-        <!-- TRANG 8: Tranh Dọc -->
-        <div class="page" id="page8">
-            <h2 class="text-xl md:text-2xl font-bold mb-6 text-center uppercase tracking-wider border-b-2 border-[#8b2500] border-opacity-20 pb-2">Tranh Khổ Dọc</h2>
-            <div class="gallery-grid">
-                <div class="flex flex-col items-center">
-                    <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Vinh_hoa.JPG" alt="Tranh Vinh Hoa"></div>
-                    </div>
-                    <div class="gallery-caption">Vinh Hoa</div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ph%C3%BA_qu%C3%BD.JPG/330px-Ph%C3%BA_qu%C3%BD.JPG" alt="Tranh Phú Quý"></div>
-                    </div>
-                    <div class="gallery-caption">Phú Quý</div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/%C4%90%C3%A1nh_ghen.JPG" alt="Tranh Đánh Ghen"></div>
-                    </div>
-                    <div class="gallery-caption">Đánh Ghen</div>
-                </div>
-                <div class="flex flex-col items-center">
-                    <div class="frame portrait" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://upload.wikimedia.org/wikipedia/commons/6/68/H%C3%A1i_d%E1%BB%ABa.JPG" alt="Tranh Hái Dừa"></div>
-                    </div>
-                    <div class="gallery-caption">Hái Dừa</div>
-                </div>
-                <div class="flex flex-col items-center col-span-2">
-                    <div class="frame portrait max-w-[50%] mx-auto" onclick="showImg(this)">
-                        <div class="frame-inner"><img src="https://phapluat.tuoitrethudo.vn/stores/news_dataimages/phamhongmanh/022021/06/22/3938_Tranh_Dong_Ho.jpg?rt=20210206224211" alt="Tranh Trâu Sen"></div>
-                    </div>
-                    <div class="gallery-caption">Trâu Sen</div>
+            <!-- Trang 9: Lời kết -->
+            <div class="page" id="page9">
+                <div class="flex flex-col items-center justify-center h-full text-center p-6">
+                    <h2 class="text-4xl font-bold title-art mb-6">LỜI KẾT</h2>
+                    <p class="text-lg italic mb-6">Hy vọng cuốn sách nhỏ này đã giúp bạn hiểu thêm về vẻ đẹp của dòng tranh dân gian Đông Hồ - một phần hồn cốt của văn hóa Việt.</p>
+                    <div class="w-16 h-1 bg-[#8b2500] my-6"></div>
+                    <p class="sub-title-art text-2xl">Cảm ơn bạn đã theo dõi!</p>
                 </div>
             </div>
-            <p class="mt-8 text-xs italic text-center text-gray-500">* Chạm vào tranh để xem kích thước đầy đủ</p>
-        </div>
 
         </div>
 
         <div class="controls">
             <button class="btn" id="prevBtn" onclick="changePage(-1)" disabled>&#8592; Trước</button>
-            <span class="page-number" id="pageIndicator">Trang 1 / 8</span>
+            <span class="page-number" id="pageIndicator">Trang 1 / 9</span>
             <button class="btn" id="nextBtn" onclick="changePage(1)">Sau &#8594;</button>
         </div>
     </div>
 
     <script>
+        const artworks = [
+            { 
+                title: "Vinh Hoa", 
+                tag: "Tranh Chúc tụng", 
+                img: "https://i.postimg.cc/bwSNyF5v/z7664870292123-fdbdb8850f8e0ea57345d952510c559e.jpg", 
+                meaning: "Hình ảnh em bé ôm con gà trống. Con gà (Đại cát) tượng trưng cho lòng dũng cảm và ngũ đức (Văn, Vũ, Dũng, Nhân, Tín). Bức tranh thể hiện mong ước sinh được con trai hiếu thảo, hiển đạt." 
+            },
+            { 
+                title: "Gà Đại Cát", 
+                tag: "Tranh Chúc tụng", 
+                img: "https://i.postimg.cc/4y8NyCZP/z7664870297697_cfef8f8a02a179c84575a48d9ec20f2d.jpg", 
+                meaning: "Chữ 'Đại Cát' nghĩa là may mắn lớn. Con gà trống oai vệ tượng trưng cho sự thịnh vượng, xua đuổi tà ma và mang lại điềm lành cho gia chủ trong năm mới." 
+            },
+            { 
+                title: "Cá Chép", 
+                tag: "Tranh Chúc tụng", 
+                img: "https://i.postimg.cc/653pSQLV/z7664870297704_84ff6f12fd82f16f09d1b5090e399d05.jpg", 
+                meaning: "Tranh 'Lý ngư vọng nguyệt' thể hiện khát vọng vươn lên, sự kiên trì và mong cầu một cuộc sống viên mãn, đủ đầy như trăng rằm." 
+            },
+            { 
+                title: "Bà Triệu", 
+                tag: "Tranh Lịch sử", 
+                img: "https://i.postimg.cc/QxtdPMkQ/z7664870302947-fee6a774adc71e76690e6e7ae9253f03.jpg", 
+                meaning: "Khắc họa nữ anh hùng Triệu Thị Trinh cưỡi voi đánh giặc. Thể hiện niềm tự hào dân tộc và sức mạnh quật cường của phụ nữ Việt Nam." 
+            },
+            { 
+                title: "Trâu Sen", 
+                tag: "Tranh Sinh hoạt", 
+                img: "https://i.postimg.cc/gkJ250qD/z7664870305231_7b8a808f098ba3b2f83b79f40b49fab0.jpg", 
+                meaning: "Hình ảnh chú trâu thong dong dưới lá sen biểu tượng cho sự an nhàn, cảnh thanh bình và sự hòa hợp giữa con người với thiên nhiên." 
+            },
+            { 
+                title: "Hứng Dừa", 
+                tag: "Tranh Sinh hoạt", 
+                img: "https://i.postimg.cc/DyZwDzd5/z7664870309020_f57afa25c6b89a40ba936564a925c5c3.jpg", 
+                meaning: "Ca ngợi hạnh phúc gia đình giản dị, sự phối hợp nhịp nhàng giữa vợ chồng, con cái trong lao động sản xuất thường nhật." 
+            },
+            { 
+                title: "Đánh Ghen", 
+                tag: "Tranh Trào phúng", 
+                img: "https://i.ibb.co/SX2SYjry/nh-ghen.jpg", 
+                meaning: "Phê phán chế độ đa thê xã hội cũ. Bức tranh phản ánh những mâu thuẫn gia đình nhưng qua nét vẽ hóm hỉnh, nhẹ nhàng của nghệ nhân dân gian." 
+            },
+            { 
+                title: "Lợn Đàn", 
+                tag: "Tranh Chúc tụng", 
+                img: "https://i.postimg.cc/3x0J8bqy/z7664870344844_625a4bd479f84065b655ad67eca36f3d.jpg", 
+                meaning: "Lợn mẹ và đàn con béo tròn với những xoáy âm dương. Tượng trưng cho sự sinh sôi nảy nở, cuộc sống no ấm, sung túc." 
+            }
+        ];
+
         let currentPage = 1;
-        const totalPages = 8;
-        let currentAudio = null;
-        let currentAudioBtn = null;
-        let playPromise = null;
+        const totalPages = 9;
+
+        function initAppendix() {
+            const container1 = document.getElementById('appendix1');
+            const container2 = document.getElementById('appendix2');
+            
+            artworks.forEach((art, index) => {
+                const item = document.createElement('div');
+                item.className = 'appendix-item';
+                item.onclick = (e) => { e.stopPropagation(); openModal(index); };
+                item.innerHTML = `
+                    <div class="appendix-thumb-container">
+                        <img src="${art.img}" class="appendix-thumb" alt="${art.title}" onerror="this.src='https://via.placeholder.com/300?text=Tranh+Đông+Hồ'">
+                    </div>
+                    <p class="item-label truncate">${art.title}</p>
+                `;
+                
+                // Chia 4 ảnh đầu vào trang 7, 4 ảnh sau vào trang 8
+                if (index < 4) {
+                    container1.appendChild(item);
+                } else {
+                    container2.appendChild(item);
+                }
+            });
+        }
+
+        function openModal(index) {
+            const art = artworks[index];
+            document.getElementById('modalTitle').innerText = art.title;
+            document.getElementById('modalTag').innerText = art.tag;
+            document.getElementById('modalImg').src = art.img;
+            document.getElementById('modalMeaning').innerText = art.meaning;
+            document.getElementById('detailModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
+        }
 
         function changePage(direction) {
-            stopAllAudio();
-
             if (direction === 1 && currentPage < totalPages) {
                 document.getElementById(`page${currentPage}`).classList.add('flipped');
                 currentPage++;
@@ -417,65 +415,9 @@
             document.getElementById('prevBtn').disabled = currentPage === 1;
             document.getElementById('nextBtn').disabled = currentPage === totalPages;
             document.getElementById('pageIndicator').innerText = `Trang ${currentPage} / ${totalPages}`;
-            
-            const activePage = document.getElementById(`page${currentPage}`);
-            if (activePage) activePage.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function toggleAudio(page, url, btn) {
-            if (currentAudio && currentAudio.src === url) {
-                if (currentAudio.paused) {
-                    playPromise = currentAudio.play();
-                    btn.classList.add('playing');
-                } else {
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            currentAudio.pause();
-                            btn.classList.remove('playing');
-                        }).catch(() => {});
-                    } else {
-                        currentAudio.pause();
-                        btn.classList.remove('playing');
-                    }
-                }
-            } else {
-                stopAllAudio();
-                currentAudio = new Audio(url);
-                currentAudioBtn = btn;
-                playPromise = currentAudio.play();
-                btn.classList.add('playing');
-                
-                currentAudio.onended = () => {
-                    btn.classList.remove('playing');
-                };
-            }
-        }
-
-        function stopAllAudio() {
-            if (currentAudio) {
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        currentAudio.pause();
-                        currentAudio = null;
-                    }).catch(() => {
-                        currentAudio = null;
-                    });
-                } else {
-                    currentAudio.pause();
-                    currentAudio = null;
-                }
-            }
-            if (currentAudioBtn) {
-                currentAudioBtn.classList.remove('playing');
-                currentAudioBtn = null;
-            }
-        }
-
-        function showImg(el) {
-            const src = el.querySelector('img').src;
-            document.getElementById('lightboxImg').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
+        window.onload = initAppendix;
     </script>
 </body>
 </html>
