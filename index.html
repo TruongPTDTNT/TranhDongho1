@@ -50,7 +50,7 @@
                 inset 4px 0 10px rgba(0,0,0,0.1),
                 inset -1px 0 2px rgba(255,255,255,0.5),
                 10px 15px 30px rgba(0,0,0,0.4);
-            padding: 25px;
+            padding: 30px;
             font-family: 'Lora', serif;
             color: #332d29;
             transform-origin: left center;
@@ -107,125 +107,50 @@
 
         .page-number { color: white; font-style: italic; text-shadow: 1px 1px 2px black; }
 
-        .appendix-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Đổi thành 2 cột để ảnh to hơn */
-            gap: 20px;
-            margin-top: 15px;
+        .content-body {
+            line-height: 1.7;
+            text-align: justify;
+            font-size: 0.92rem;
         }
-
-        .appendix-item {
-            background: rgba(215, 196, 165, 0.15);
-            border: 1px solid #8b250022;
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
+        .content-body p {
+            margin-bottom: 0.8rem;
+            text-indent: 1.5rem;
         }
-
-        .appendix-item:hover {
-            background: #fff;
-            transform: translateY(-5px);
-            border-color: #8b2500;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .appendix-thumb-container {
-            width: 100%;
-            aspect-ratio: 1/1; /* Kích thước vuông đồng nhất */
-            overflow: hidden;
-            background: white;
-            margin-bottom: 8px;
-            border: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .appendix-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Giữ nguyên tỷ lệ ảnh gốc */
-        }
-
-        .item-label {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: 0.9rem;
+        .section-header {
             color: #8b2500;
-            margin-top: 5px;
-        }
-
-        #detailModal {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: #fdfbf5;
-            max-width: 750px;
-            width: 100%;
-            max-height: 95vh;
-            border-radius: 4px;
-            overflow-y: auto;
-            position: relative;
-            padding: 30px;
-            border: 8px double #8b250033;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 2.5rem;
-            color: #8b2500;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .modal-img-container {
-            width: 100%;
-            background: white;
-            padding: 15px;
-            border: 1px solid #d7c4a5;
-            margin-bottom: 20px;
-        }
-
-        .modal-img {
-            width: 100%;
-            max-height: 500px;
-            object-fit: contain;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 2px 15px;
-            background: #8b2500;
-            color: #fdfbf5;
-            border-radius: 2px;
-            font-size: 0.75rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            display: block;
+            border-bottom: 2px solid #8b2500;
+            padding-bottom: 6px;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+        }
+        
+        .image-caption-box {
+            font-size: 0.78rem;
+            color: #5d4037;
+            text-align: center;
+            font-style: italic;
+            margin: 8px 0;
+            padding: 6px;
+            background: rgba(139, 37, 0, 0.04);
+            border-left: 3px solid #8b2500;
+            line-height: 1.3;
         }
 
-        .empty-page-placeholder {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px dashed #8b250044;
-            color: #8b250066;
-            font-style: italic;
-        }
+        /* Appendix styles */
+        .appendix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 10px; }
+        .appendix-item { background: rgba(215, 196, 165, 0.15); border: 1px solid #8b250022; border-radius: 8px; padding: 10px; text-align: center; cursor: pointer; transition: 0.3s; display: flex; flex-direction: column; }
+        .appendix-item:hover { background: #fff; transform: translateY(-3px); border-color: #8b2500; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .appendix-thumb-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: white; margin-bottom: 5px; border: 1px solid #eee; display: flex; align-items: center; justify-content: center; }
+        .appendix-thumb { width: 100%; height: 100%; object-fit: contain; }
+        .item-label { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.85rem; color: #8b2500; margin-top: 3px; }
+        
+        #detailModal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 20px; }
+        .modal-content { background: #fdfbf5; max-width: 750px; width: 100%; max-height: 95vh; border-radius: 4px; overflow-y: auto; position: relative; padding: 30px; border: 8px double #8b250033; }
+        .close-modal { position: absolute; top: 10px; right: 15px; font-size: 2.5rem; color: #8b2500; cursor: pointer; z-index: 10; }
     </style>
 </head>
 <body>
@@ -233,14 +158,12 @@
     <div id="detailModal">
         <div class="modal-content text-center">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="modalTag" class="tag">Phân loại</div>
-            <h2 id="modalTitle" class="text-3xl font-bold title-art mb-4">Tên Tranh</h2>
-            <div class="modal-img-container">
-                <img id="modalImg" class="modal-img" src="" alt="Tranh">
-            </div>
+            <div id="modalTag" class="inline-block px-4 py-1 bg-[#8b2500] text-white text-xs font-bold mb-2"></div>
+            <h2 id="modalTitle" class="text-3xl font-bold title-art mb-4"></h2>
+            <div class="bg-white p-4 border border-[#d7c4a5] mb-4"><img id="modalImg" class="w-full max-h-[500px] object-contain" src="" alt="Tranh"></div>
             <div class="text-left px-4">
                 <h3 class="text-xl font-bold title-art mb-2 border-b border-[#8b250022] pb-1">Ý nghĩa nội dung</h3>
-                <p id="modalMeaning" class="text-gray-700 leading-relaxed italic text-lg"></p>
+                <p id="modalMeaning" class="text-gray-700 italic text-lg leading-relaxed"></p>
             </div>
         </div>
     </div>
@@ -264,41 +187,116 @@
                 </div>
             </div>
 
-            <!-- Các trang nội dung ẩn -->
-            <div class="page" id="page2"><div class="empty-page-placeholder"><p>Nội dung trang 2</p></div></div>
-            <div class="page" id="page3"><div class="empty-page-placeholder"><p>Nội dung trang 3</p></div></div>
-            <div class="page" id="page4"><div class="empty-page-placeholder"><p>Nội dung trang 4</p></div></div>
-            <div class="page" id="page5"><div class="empty-page-placeholder"><p>Nội dung trang 5</p></div></div>
-            <div class="page" id="page6"><div class="empty-page-placeholder"><p>Nội dung trang 6</p></div></div>
-
-            <!-- Trang 7: Phụ lục 1 -->
-            <div class="page" id="page7">
-                <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold title-art">PHỤ LỤC: DANH TÁC (1)</h2>
-                    <div class="w-24 h-0.5 bg-[#8b250044] mx-auto mt-1"></div>
+            <!-- Trang 2: Lịch sử -->
+            <div class="page" id="page2">
+                <div class="h-full flex flex-col">
+                    <h2 class="section-header">Tranh Đông Hồ: Hồn Việt<br>trong từng nét chạm</h2>
+                    <div class="content-body">
+                        <p>Trong văn hóa dân gian Việt Nam, tranh Đông Hồ đã đi vào nếp sống, trở thành món ăn tinh thần trong đời sống văn hóa của người Việt, đặc biệt vào dịp Tết Nguyên Đán. Theo lời kể của người làng Đông Hồ, một ngôi làng thanh bình bên bờ sông Đuống thuộc tỉnh Bắc Ninh, dòng tranh dân gian độc đáo này có thể đã xuất hiện từ thời nhà Lý, khoảng thế kỷ 11. Tuy nhiên, khi truy tìm nguồn cội, các nhà nghiên cứu lại cho rằng những nghệ nhân đầu tiên bắt đầu in tranh từ triều đại nhà Lê, dưới thời vua Lê Kính Tông (1600-1619). Dù nguồn gốc còn mơ hồ, nét độc bản trong phong cách và tính bản địa của từng bức tranh lại hiện hữu rõ ràng, mạnh mẽ trong dòng chảy văn hóa dân gian Việt Nam.</p>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Trang 3: Quy trình -->
+            <div class="page" id="page3">
+                <div class="h-full flex flex-col">
+                    <span class="section-header">1. Quy trình làm tranh – Sự tinh xảo từ thiên nhiên</span>
+                    <div class="content-body">
+                        <p>Nghệ thuật tạo tranh Đông Hồ thể hiện khả năng khai thác vốn quý thiên nhiên một cách tài tình của người Việt với quy trình công phu, sử dụng các vật liệu thuần khiết, gần gũi trong đời sống. Từ giấy, màu mực, khuôn in đến thành phẩm cuối cùng đều được chế tác thủ công từ nguyên liệu tự nhiên sẵn có quanh vùng.</p>
+                        
+                        <p>Giấy điệp – nền tảng của tranh Đông Hồ – được tạo thành từ nhiều lớp quét hỗn hợp đặc biệt giữa bột vỏ sò điệp và hồ dán (thường nấu từ bột gạo tẻ, gạo nếp hoặc bột sắn) lên giấy dó. Bàn tay tài hoa của người thợ dùng chổi lá thông thấm qua hỗn hợp và quét nhiều lớp, tạo nên những đường vân chạy dọc mặt giấy. Sự kết hợp này mang đến cho tranh một màu trắng ngà tự nhiên và ánh long lanh của những mảnh điệp nhỏ dưới ánh sáng, đồng thời giúp giấy dày hơn, có tính đàn hồi cao, tăng độ thẩm thấu và lưu giữ màu sắc bền lâu.</p>
+                        
+                        <div class="image-caption-box">Sản xuất giấy điệp bằng cách quét hỗn hợp được trộn từ hồ dán và bột vỏ sò qua nhiều lớp bằng chổi lá thông.</div>
+                        
+                        <p>Khác với tranh Hàng Trống rực rỡ, Đông Hồ mang sắc trầm lắng, thuần khiết đến từ chất liệu thiên nhiên. Màu sắc được chiết xuất từ đa dạng nguồn gốc bản địa: sắc đen từ than lá tre (đôi khi là than gỗ xoan hoặc rơm nếp), đỏ nâu từ sỏi son, vàng từ hoa dành dành, hoa hoè, xanh lục từ lá chàm hoặc gỉ đồng. Chính sự tinh khiết, ít pha trộn phẩm màu nhân tạo này đã tạo nên nét duyên mộc mạc đặc trưng của nghệ thuật dân gian.</p>
+                        
+                        <p>Quá trình in đòi hỏi sự tỉ mỉ về độ đều màu và chính xác của từng lớp. Thông thường, các lớp màu đậm được in trước, tiếp đến là các lớp nhạt và hoàn thiện bằng ván khắc nét đen. Ván in được làm từ gỗ thị hoặc gỗ thừng mực với độ thấm vừa phải, đảm bảo lượng màu đồng đều trong suốt quá trình in. Mỗi ván khắc đều có hai thanh đinh cố định hai đầu, giúp định vị chính xác qua nhiều tầng lớp in và khuôn khắc khác nhau, để sản xuất được số lượng lớn tranh với chất lượng đồng nhất.</p>
+                        
+                        <div class="image-caption-box">Khuôn khắc được thực hiện tỉ mỉ bởi các nghệ nhân, đảm bảo các lớp in đúng hình và vị trí in.</div>
+                        <div class="image-caption-box">Các khuôn khắc nét với đa dạng chủ đề khác nhau.</div>
+                        
+                        <p>Trong văn hóa dân gian Việt Nam, Táo quân gắn với huyền tích “hai ông một bà” bao gồm thần Bếp, thần Nhà và thần Đất.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang 4: Phân loại và ý nghĩa -->
+            <div class="page" id="page4">
+                <div class="h-full flex flex-col">
+                    <span class="section-header">2. Phân loại và ý nghĩa – Tấm gương phản chiếu đời sống văn hóa</span>
+                    <div class="content-body">
+                        <p>Với nếp sống văn hóa đa dạng cùng lớp nền lịch sử lâu đời, những câu chuyện và đề tài của tranh Đông Hồ được nghệ nhân thể hiện qua nhiều góc nhìn phong phú. Dựa theo chủ đề, dòng tranh này chia thành bảy thể loại chính: tranh thờ, tranh lịch sử, tranh chúc tụng, tranh phương ngôn, tranh truyện, tranh cảnh vật và tranh sinh hoạt.</p>
+                        
+                        <p>Mỗi bức tranh đều mang đậm tính bản địa của người Việt, từ nét chân phương trong đời sống thường nhật đến những hoài bảo, ước mong về cuộc sống sung túc, hạnh phúc. Chính vì vậy, tranh Đông Hồ thường được mua và trưng bày trong dịp Tết Nguyên Đán, với nội dung tươi sáng, tích cực, đôi khi pha chút hài hước tinh tế, thể hiện qua các gam màu may mắn và sung túc như đỏ, vàng, trắng.</p>
+                        
+                        <div class="image-caption-box">Tranh vẽ cảnh đám cưới của cặp đôi chuột, đang dâng sính lễ lên cho mèo, mong cầu một cuộc sống bình yên sau lễ cưới. Bức tranh <strong>Đám cưới chuột</strong> là tiếng lòng của nhân dân đối với xã hội phong kiến áp bức thuở xưa.</div>
+                        
+                        <div class="image-caption-box"><strong>Vinh Hoa – Phú Quý</strong> là cặp tranh nổi tiếng của dòng tranh Đông Hồ. Miêu tả hai em bé ôm gà vịt, tranh được coi như lời chúc tụng mưu cầu vinh hoa, tài lộc, mong muốn gia đình có một cuộc sống ấm no, giàu sang.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang 5: Đặc trưng nghệ thuật -->
+            <div class="page" id="page5">
+                <div class="h-full flex flex-col">
+                    <span class="section-header">3. Đặc trưng của tranh Đông Hồ – Nét riêng không thể trộn lẫn</span>
+                    <div class="content-body">
+                        <p>Tranh Đông Hồ là sự kết hợp hài hòa, gắn kết giữa hình và chữ. Thơ, câu đối được viết dưới dạng Hán tự hoặc chữ Nôm không chỉ bổ nghĩa cho nội dung, giúp người xem thấu hiểu thông điệp sâu sắc, mà còn được khéo léo đặt đối diện ánh nhìn của chủ thể trong tranh như một phương thức cân bằng bố cục, tạo nên sự hài hòa, đối xứng cho tổng thể.</p>
+                        
+                        <div class="image-caption-box"><strong>Cặp tranh Ông Tơ – Bà Nguyệt:</strong> Chữ bên tranh trái ghi: “Phỉ nguyền sánh phượng” và “Bách niên giai lão”. Chữ bên tranh phải ghi: “Đẹp phận thừa long” và “Quân tử hảo cầu”. Tranh là sự chúc phúc cho cặp đôi nam, nữ đến độ cập kê sẽ tìm được ý chung nhân, gắn kết lâu dài.</div>
+                        
+                        <div class="image-caption-box"><strong>Tranh Lý ngư vọng nguyệt:</strong> Cá chép là loài vật có khả năng bơi ngược dòng, tượng trưng cho sự nỗ lực, ý chí vươn lên, thể hiện ước vọng về một cuộc sống tốt đẹp, hạnh phúc, viên mãn.</div>
+                        
+                        <p>Giá trị độc đáo của tranh Đông Hồ không chỉ đến từ phương pháp chế tác mà còn là biểu tượng ẩn hiện thẩm mỹ truyền thống của nghệ thuật Việt Nam. Đường nét đầy đặn trong tạo hình nhằm tái hiện dấu ấn nguyên bản của các tạo tác xưa cổ, từ dáng hình linh vật rồng qua các triều đại đến các kiến trúc chạm trổ của những mái đình làng cổ kính. Tính phồn thực ấy là biểu hiện sinh động của ước mong đầy đặn khỏe khoắn, cuộc sống ấm no hạnh phúc.</p>
+                        
+                        <div class="image-caption-box"><strong>Tranh Chăn trâu thổi sáo</strong> sử dụng đa dạng các loại nét từ nét đơn tạo hình, nét băm thân sen, nét xoè từ mảng tóc của bé trai hay nét gợi khối chi của trâu.</div>
+                        
+                        <div class="image-caption-box"><strong>Tranh Đàn lợn âm dương</strong> thể hiện ước vọng về một cuộc sống an lành, bình yên, không có tai ương, bệnh tật. Cầu chúc một năm mới an khang, thịnh vượng, đông con nhiều cháu.</div>
+                        
+                        <p>Bên cạnh đó, độ đậm nhạt của đường nét gọt hình tạo nên sự thú vị trong từng bức tranh. Lúc thanh thoát, lúc đậm nét nhưng luôn hòa hợp tổng thể, đan xen đa dạng các loại nét khác nhau (nét đơn, nét kép, nét băm, nét từ mảng xòe ra, nét âm, nét gợi khối…) giúp tạo được những phép hình với phong cách riêng biệt.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang 6: Ứng dụng đương đại -->
+            <div class="page" id="page6">
+                <div class="h-full flex flex-col">
+                    <span class="section-header">4. Ứng dụng tranh Đông Hồ – Khi truyền thống gặp gỡ đương đại</span>
+                    <div class="content-body">
+                        <p>Nhờ vào nét độc đáo riêng, tranh Đông Hồ đã trở thành nguồn cảm hứng bất tận cho các nhà thiết kế đương đại. Từ nền tảng đậm chất dân gian với sự giản đơn trong màu sắc và đường nét, nhiều sáng tạo mới đã ra đời mang dáng vóc hiện đại, hợp thời nhưng vẫn giữ được vẻ đẹp nguyên bản. </p>
+                        
+                        <p>Phần lớn các sáng tác thiết kế hiện nay tái hiện khéo léo không khí dân gian của tranh Đông Hồ, đồng thời thể nghiệm phong phú các tạo hình với những đề tài đương đại, hòa nhịp cùng dòng chảy thời đại mà không đánh mất bản sắc văn hóa truyền thống – minh chứng rõ ràng cho sức sống bền bỉ của một di sản văn hóa phi vật thể quý báu của dân tộc Việt Nam.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trang 7 & 8: Phụ lục -->
+            <div class="page" id="page7">
+                <div class="text-center mb-4"><h2 class="text-2xl font-bold title-art uppercase">Phụ lục (1)</h2></div>
                 <div class="appendix-grid" id="appendix1"></div>
             </div>
 
-            <!-- Trang 8: Phụ lục 2 (Trang mới tạo) -->
             <div class="page" id="page8">
-                <div class="text-center mb-6">
-                    <h2 class="text-3xl font-bold title-art">PHỤ LỤC: DANH TÁC (2)</h2>
-                    <div class="w-24 h-0.5 bg-[#8b250044] mx-auto mt-1"></div>
-                </div>
+                <div class="text-center mb-4"><h2 class="text-2xl font-bold title-art uppercase">Phụ lục (2)</h2></div>
                 <div class="appendix-grid" id="appendix2"></div>
-                <div class="mt-8 text-center">
-                    <p class="text-[10px] uppercase tracking-widest text-gray-400 italic font-bold">Chạm vào tranh để xem chi tiết ý nghĩa</p>
-                </div>
             </div>
 
-            <!-- Trang 9: Lời kết -->
+            <!-- Trang 9: Lời kết - ĐÃ CẬP NHẬT THEO YÊU CẦU MỚI -->
             <div class="page" id="page9">
-                <div class="flex flex-col items-center justify-center h-full text-center p-6">
-                    <h2 class="text-4xl font-bold title-art mb-6">LỜI KẾT</h2>
-                    <p class="text-lg italic mb-6">Hy vọng cuốn sách nhỏ này đã giúp bạn hiểu thêm về vẻ đẹp của dòng tranh dân gian Đông Hồ - một phần hồn cốt của văn hóa Việt.</p>
-                    <div class="w-16 h-1 bg-[#8b2500] my-6"></div>
-                    <p class="sub-title-art text-2xl">Cảm ơn bạn đã theo dõi!</p>
+                <div class="flex flex-col h-full">
+                    <div class="text-center mb-6"><h2 class="text-3xl font-bold title-art uppercase">Lời kết</h2></div>
+                    <div class="content-body text-justify">
+                        <p>Có thể nói, ngày Hội Steam hôm nay đã giúp cho các bạn học sinh có cơ hội trải nghiệm cũng như hiểu sâu sắc hơn giá trị nghệ thuật – văn hóa – nhân văn của dòng tranh dân gian; từ đó hình thành ý thức trách nhiệm trong việc gìn giữ, lan tỏa và phát huy di sản văn hóa truyền thống của dân tộc Việt.</p>
+                        
+                        <p>Mỗi bức tranh mà các em tạo nên hôm nay không chỉ là sản phẩm học tập, mà còn là thông điệp của thế hệ trẻ: trân trọng quá khứ – giữ gìn bản sắc – xây dựng tương lai.</p>
+                        
+                        <div class="mt-8 p-6 bg-stone-100 border-l-4 border-[#8b2500] italic">
+                            <p class="mb-0">Tuổi trẻ Trường PTDT nội trú tự hào được đóng góp một phần nhỏ bé vào hành trình bảo tồn và quảng bá di sản văn hóa dân tộc.</p>
+                        </div>
+                    </div>
+                    <div class="mt-auto text-center py-4 border-t border-[#8b250022]">
+                        <p class="font-bold text-amber-900 text-sm tracking-widest uppercase">Trường Phổ thông Dân tộc Nội trú</p>
+                    </div>
                 </div>
             </div>
 
@@ -313,54 +311,14 @@
 
     <script>
         const artworks = [
-            { 
-                title: "Vinh Hoa", 
-                tag: "Tranh Chúc tụng", 
-                img: "https://i.postimg.cc/bwSNyF5v/z7664870292123-fdbdb8850f8e0ea57345d952510c559e.jpg", 
-                meaning: "Hình ảnh em bé ôm con gà trống. Con gà (Đại cát) tượng trưng cho lòng dũng cảm và ngũ đức (Văn, Vũ, Dũng, Nhân, Tín). Bức tranh thể hiện mong ước sinh được con trai hiếu thảo, hiển đạt." 
-            },
-            { 
-                title: "Gà Đại Cát", 
-                tag: "Tranh Chúc tụng", 
-                img: "https://i.postimg.cc/4y8NyCZP/z7664870297697_cfef8f8a02a179c84575a48d9ec20f2d.jpg", 
-                meaning: "Chữ 'Đại Cát' nghĩa là may mắn lớn. Con gà trống oai vệ tượng trưng cho sự thịnh vượng, xua đuổi tà ma và mang lại điềm lành cho gia chủ trong năm mới." 
-            },
-            { 
-                title: "Cá Chép", 
-                tag: "Tranh Chúc tụng", 
-                img: "https://i.postimg.cc/653pSQLV/z7664870297704_84ff6f12fd82f16f09d1b5090e399d05.jpg", 
-                meaning: "Tranh 'Lý ngư vọng nguyệt' thể hiện khát vọng vươn lên, sự kiên trì và mong cầu một cuộc sống viên mãn, đủ đầy như trăng rằm." 
-            },
-            { 
-                title: "Bà Triệu", 
-                tag: "Tranh Lịch sử", 
-                img: "https://i.postimg.cc/QxtdPMkQ/z7664870302947-fee6a774adc71e76690e6e7ae9253f03.jpg", 
-                meaning: "Khắc họa nữ anh hùng Triệu Thị Trinh cưỡi voi đánh giặc. Thể hiện niềm tự hào dân tộc và sức mạnh quật cường của phụ nữ Việt Nam." 
-            },
-            { 
-                title: "Trâu Sen", 
-                tag: "Tranh Sinh hoạt", 
-                img: "https://i.postimg.cc/gkJ250qD/z7664870305231_7b8a808f098ba3b2f83b79f40b49fab0.jpg", 
-                meaning: "Hình ảnh chú trâu thong dong dưới lá sen biểu tượng cho sự an nhàn, cảnh thanh bình và sự hòa hợp giữa con người với thiên nhiên." 
-            },
-            { 
-                title: "Hứng Dừa", 
-                tag: "Tranh Sinh hoạt", 
-                img: "https://i.postimg.cc/DyZwDzd5/z7664870309020_f57afa25c6b89a40ba936564a925c5c3.jpg", 
-                meaning: "Ca ngợi hạnh phúc gia đình giản dị, sự phối hợp nhịp nhàng giữa vợ chồng, con cái trong lao động sản xuất thường nhật." 
-            },
-            { 
-                title: "Đánh Ghen", 
-                tag: "Tranh Trào phúng", 
-                img: "https://i.ibb.co/SX2SYjry/nh-ghen.jpg", 
-                meaning: "Phê phán chế độ đa thê xã hội cũ. Bức tranh phản ánh những mâu thuẫn gia đình nhưng qua nét vẽ hóm hỉnh, nhẹ nhàng của nghệ nhân dân gian." 
-            },
-            { 
-                title: "Lợn Đàn", 
-                tag: "Tranh Chúc tụng", 
-                img: "https://i.postimg.cc/3x0J8bqy/z7664870344844_625a4bd479f84065b655ad67eca36f3d.jpg", 
-                meaning: "Lợn mẹ và đàn con béo tròn với những xoáy âm dương. Tượng trưng cho sự sinh sôi nảy nở, cuộc sống no ấm, sung túc." 
-            }
+            { title: "Vinh Hoa", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/bwSNyF5v/z7664870292123-fdbdb8850f8e0ea57345d952510c559e.jpg", meaning: "Em bé ôm gà trống tượng trưng cho lòng dũng cảm và ngũ đức." },
+            { title: "Gà Đại Cát", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/4y8NyCZP/z7664870297697_cfef8f8a02a179c84575a48d9ec20f2d.jpg", meaning: "Con gà trống oai vệ mang lại điềm lành cho năm mới." },
+            { title: "Cá Chép", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/653pSQLV/z7664870297704_84ff6f12fd82f16f09d1b5090e399d05.jpg", meaning: "Ước vọng về sự nỗ lực và cuộc sống viên mãn." },
+            { title: "Bà Triệu", tag: "Tranh Lịch sử", img: "https://i.postimg.cc/QxtdPMkQ/z7664870302947-fee6a774adc71e76690e6e7ae9253f03.jpg", meaning: "Nữ anh hùng cưỡi voi, niềm tự hào sức mạnh Việt." },
+            { title: "Trâu Sen", tag: "Tranh Sinh hoạt", img: "https://i.postimg.cc/gkJ250qD/z7664870305231_7b8a808f098ba3b2f83b79f40b49fab0.jpg", meaning: "Sự an nhàn và thanh bình của làng quê." },
+            { title: "Hứng Dừa", tag: "Tranh Sinh hoạt", img: "https://i.postimg.cc/DyZwDzd5/z7664870309020_f57afa25c6b89a40ba936564a925c5c3.jpg", meaning: "Hạnh phúc gia đình và sự hòa hợp trong lao động." },
+            { title: "Đánh Ghen", tag: "Tranh Trào phúng", img: "https://i.ibb.co/SX2SYjry/nh-ghen.jpg", meaning: "Phê phán chế độ đa thê xã hội cũ." },
+            { title: "Lợn Đàn", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/3x0J8bqy/z7664870344844_625a4bd479f84065b655ad67eca36f3d.jpg", meaning: "Sự sinh sôi nảy nở và cuộc sống no ấm." }
         ];
 
         let currentPage = 1;
@@ -369,24 +327,16 @@
         function initAppendix() {
             const container1 = document.getElementById('appendix1');
             const container2 = document.getElementById('appendix2');
-            
             artworks.forEach((art, index) => {
                 const item = document.createElement('div');
                 item.className = 'appendix-item';
-                item.onclick = (e) => { e.stopPropagation(); openModal(index); };
+                item.onclick = () => openModal(index);
                 item.innerHTML = `
-                    <div class="appendix-thumb-container">
-                        <img src="${art.img}" class="appendix-thumb" alt="${art.title}" onerror="this.src='https://via.placeholder.com/300?text=Tranh+Đông+Hồ'">
-                    </div>
+                    <div class="appendix-thumb-container"><img src="${art.img}" class="appendix-thumb" alt="${art.title}"></div>
                     <p class="item-label truncate">${art.title}</p>
                 `;
-                
-                // Chia 4 ảnh đầu vào trang 7, 4 ảnh sau vào trang 8
-                if (index < 4) {
-                    container1.appendChild(item);
-                } else {
-                    container2.appendChild(item);
-                }
+                if (index < 4) container1.appendChild(item);
+                else container2.appendChild(item);
             });
         }
 
@@ -399,9 +349,7 @@
             document.getElementById('detailModal').style.display = 'flex';
         }
 
-        function closeModal() {
-            document.getElementById('detailModal').style.display = 'none';
-        }
+        function closeModal() { document.getElementById('detailModal').style.display = 'none'; }
 
         function changePage(direction) {
             if (direction === 1 && currentPage < totalPages) {
@@ -411,7 +359,6 @@
                 currentPage--;
                 document.getElementById(`page${currentPage}`).classList.remove('flipped');
             }
-            
             document.getElementById('prevBtn').disabled = currentPage === 1;
             document.getElementById('nextBtn').disabled = currentPage === totalPages;
             document.getElementById('pageIndicator').innerText = `Trang ${currentPage} / ${totalPages}`;
