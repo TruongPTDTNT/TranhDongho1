@@ -376,7 +376,7 @@
         const artworks = [
             { title: "Vinh Hoa", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/bwSNyF5v/z7664870292123-fdbdb8850f8e0ea57345d952510c559e.jpg", meaning: "Bức tranh Vinh Hoa gửi gắm lời chúc gia đình luôn hiển đạt, công danh rạng rỡ như tên gọi, đồng thời cầu mong sớm sinh được quý tử thông minh, khỏe mạnh để nối dõi tông đường và mang lại sự sung túc, đại cát cho cả dòng họ." },
             { title: "Gà Đại Cát", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/4y8NyCZP/z7664870297697_cfef8f8a02a179c84575a48d9ec20f2d.jpg", meaning: "Bức tranh Gà Đại Cát mang ý nghĩa cầu chúc cho gia chủ một năm mới vạn sự như ý, gặt hái được những niềm vui và thành công lớn lao, đồng thời tôn vinh năm đức tính quý báu của người quân tử thông qua hình tượng chú gà trống dũng mãnh báo hiệu sự khởi đầu của ánh sáng và hy vọng." },
-            { title: "Cá Chép", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/653pSQLV/z7664870297704_84ff6f12fd82f16f09d1b5090e399d05.jpg", meaning: "Bức tranh Cá Chép (Lý Ngư) mang ý nghĩa biểu tượng cho sự kiên trì, nỗ lực vượt khó để đạt được thành công rực rỡ qua hình ảnh "Cá chép hóa rồng", đồng thời cầu chúc cho gia đình luôn dư dả, sung túc và con cái đỗ đạt trong học vấn." },
+            { title: "Cá Chép", tag: "Tranh Chúc tụng", img: "https://i.postimg.cc/653pSQLV/z7664870297704_84ff6f12fd82f16f09d1b5090e399d05.jpg", meaning: "Bức tranh Cá Chép (Lý Ngư) mang ý nghĩa biểu tượng cho sự kiên trì, nỗ lực vượt khó để đạt được thành công rực rỡ qua hình ảnh \"Cá chép hóa rồng\", đồng thời cầu chúc cho gia đình luôn dư dả, sung túc và con cái đỗ đạt trong học vấn." },
             { title: "Bà Triệu", tag: "Tranh Lịch sử", img: "https://i.postimg.cc/QxtdPMkQ/z7664870302947-fee6a774adc71e76690e6e7ae9253f03.jpg", meaning: "Bức tranh Bà Triệu tôn vinh khí phách anh hùng và tinh thần bất khuất của người phụ nữ Việt Nam qua hình ảnh nữ tướng cưỡi voi ra trận, thể hiện khát vọng độc lập tự do và lòng tự hào dân tộc sâu sắc." },
             { title: "Trâu Sen", tag: "Tranh Sinh hoạt", img: "https://i.postimg.cc/gkJ250qD/z7664870305231_7b8a808f098ba3b2f83b79f40b49fab0.jpg", meaning: "Bức tranh Trâu Sen tượng trưng cho sự no ấm, thanh bình của làng quê Việt Nam qua hình ảnh chú trâu khỏe mạnh dưới đóa sen tinh khiết, gửi gắm ước nguyện về một cuộc sống an yên, mùa màng bội thu và tâm hồn luôn thanh cao, tự tại." },
             { title: "Hứng Dừa", tag: "Tranh Sinh hoạt", img: "https://i.postimg.cc/DyZwDzd5/z7664870309020_f57afa25c6b89a40ba936564a925c5c3.jpg", meaning: "Bức tranh Hứng Dừa mượn hình ảnh sinh hoạt đời thường để ca ngợi sự hòa hợp, gắn kết giữa các thành viên trong gia đình và gửi gắm ước nguyện về một cuộc sống sung túc, hạnh phúc, đầy ắp tiếng cười qua từng thế hệ." },
@@ -409,7 +409,6 @@
         async function toggleAudio(page, url, btn) {
             if (isTransitioning) return;
             
-            // Nếu bấm vào nút đang phát, thì dừng lại
             if (currentAudio && !currentAudio.paused && activeAudioBtn === btn) {
                 currentAudio.pause();
                 btn.classList.remove('playing');
@@ -419,18 +418,15 @@
             isTransitioning = true;
 
             try {
-                // Dừng audio cũ triệt để
                 if (currentAudio) {
                     currentAudio.pause();
                     currentAudio.currentTime = 0;
                     if (activeAudioBtn) activeAudioBtn.classList.remove('playing');
                 }
 
-                // Chơi audio mới
                 currentAudio = new Audio(url);
                 activeAudioBtn = btn;
                 
-                // Sử dụng play() với xử lý Promise để tránh Unhandled Rejection
                 const playPromise = currentAudio.play();
                 
                 if (playPromise !== undefined) {
@@ -463,6 +459,30 @@
             isTransitioning = false;
         }
 
+        function changePage(direction) {
+            if (isTransitioning) return;
+            
+            const nextPage = currentPage + direction;
+            if (nextPage < 1 || nextPage > totalPages) return;
+
+            stopAllAudio();
+
+            if (direction === 1) {
+                document.getElementById(`page${currentPage}`).classList.add('flipped');
+            } else {
+                document.getElementById(`page${nextPage}`).classList.remove('flipped');
+            }
+
+            currentPage = nextPage;
+            updateControls();
+        }
+
+        function updateControls() {
+            document.getElementById('prevBtn').disabled = (currentPage === 1);
+            document.getElementById('nextBtn').disabled = (currentPage === totalPages);
+            document.getElementById('pageIndicator').innerText = `Trang ${currentPage} / ${totalPages}`;
+        }
+
         function openModal(index) {
             const art = artworks[index];
             document.getElementById('modalTitle').innerText = art.title;
@@ -472,24 +492,22 @@
             document.getElementById('detailModal').style.display = 'flex';
         }
 
-        function closeModal() { document.getElementById('detailModal').style.display = 'none'; }
-
-        function changePage(direction) {
-            stopAllAudio();
-
-            if (direction === 1 && currentPage < totalPages) {
-                document.getElementById(`page${currentPage}`).classList.add('flipped');
-                currentPage++;
-            } else if (direction === -1 && currentPage > 1) {
-                currentPage--;
-                document.getElementById(`page${currentPage}`).classList.remove('flipped');
-            }
-            document.getElementById('prevBtn').disabled = currentPage === 1;
-            document.getElementById('nextBtn').disabled = currentPage === totalPages;
-            document.getElementById('pageIndicator').innerText = `Trang ${currentPage} / ${totalPages}`;
+        function closeModal() {
+            document.getElementById('detailModal').style.display = 'none';
         }
 
-        window.onload = initAppendix;
+        // Đóng modal khi click ra ngoài
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        window.onload = function() {
+            initAppendix();
+            updateControls();
+        };
     </script>
 </body>
 </html>
